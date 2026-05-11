@@ -19,6 +19,8 @@ Each folder is a self-contained app registered in PipeCD with its own pipeline.
 | `full-pipeline/` | `K8S_CANARY_ROLLOUT` → `K8S_BASELINE_ROLLOUT` → `K8S_CANARY_CLEAN` → `K8S_BASELINE_CLEAN` |
 | `traffic-routing-podselector/` | `K8S_CANARY_ROLLOUT` → `K8S_TRAFFIC_ROUTING` (PodSelector) → `K8S_PRIMARY_ROLLOUT` → `K8S_CANARY_CLEAN` |
 | `traffic-routing-istio/` | `K8S_CANARY_ROLLOUT` → `K8S_BASELINE_ROLLOUT` → `K8S_TRAFFIC_ROUTING` (Istio) → `K8S_PRIMARY_ROLLOUT` → `K8S_CANARY_CLEAN` → `K8S_BASELINE_CLEAN` |
+| `multi-target/` | `K8S_CANARY_ROLLOUT` → `K8S_PRIMARY_ROLLOUT` → `K8S_CANARY_CLEAN` across `cluster-eu` and `cluster-us` |
+| `per-stage-filtering/` | Canary on `cluster-eu` only (`multiTargets: [cluster-eu]`), then `K8S_PRIMARY_ROLLOUT` on all targets |
 
 ## Each folder contains
 
