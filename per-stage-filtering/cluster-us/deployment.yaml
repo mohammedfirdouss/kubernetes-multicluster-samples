@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: per-stage-filtering-us
+  labels:
+    app: per-stage-filtering-us
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: per-stage-filtering-us
+  template:
+    metadata:
+      labels:
+        app: per-stage-filtering-us
+    spec:
+      containers:
+      - name: helloworld
+        image: ghcr.io/pipe-cd/helloworld:v0.37.0
+        args:
+          - server
+        ports:
+        - containerPort: 9085

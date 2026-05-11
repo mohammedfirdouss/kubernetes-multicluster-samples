@@ -1,0 +1,32 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: per-stage-filtering
+  labels:
+    env: test
+  description: Canary in eu only, then promote to all targets
+  pipeline:
+    stages:
+      - name: K8S_CANARY_ROLLOUT
+        with:
+          replicas: 1
+          multiTargets:
+            - cluster-eu
+      - name: K8S_PRIMARY_ROLLOUT
+      - name: K8S_CANARY_CLEAN
+        with:
+          multiTargets:
+            - cluster-eu
+  plugins:
+    kubernetes_multicluster:
+      input:
+        multiTargets:
+          - target:
+              name: cluster-eu
+            manifests:
+              - cluster-eu/deployment.yaml
+          - target:
+              name: cluster-us
+            manifests:
+              - cluster-us/deployment.yaml
+        kubectlVersion: 1.32.2
