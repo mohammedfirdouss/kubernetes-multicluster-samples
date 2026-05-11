@@ -1,0 +1,21 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: multi-target-kustomize
+  labels:
+    env: test
+  description: Per-target kustomizeDir — each cluster gets its own kustomize overlay
+  pipeline:
+    stages:
+      - name: K8S_PRIMARY_ROLLOUT
+  plugins:
+    kubernetes_multicluster:
+      input:
+        multiTargets:
+          - target:
+              name: cluster-eu
+            kustomizeDir: cluster-eu
+          - target:
+              name: cluster-us
+            kustomizeDir: cluster-us
+        kubectlVersion: 1.32.2
