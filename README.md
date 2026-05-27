@@ -22,6 +22,7 @@ Each folder is a self-contained app registered in PipeCD with its own pipeline.
 | `multi-target/` | `K8S_CANARY_ROLLOUT` → `K8S_PRIMARY_ROLLOUT` → `K8S_CANARY_CLEAN` across `cluster-eu` and `cluster-us` |
 | `per-stage-filtering/` | Canary on `cluster-eu` only (`multiTargets: [cluster-eu]`), then `K8S_PRIMARY_ROLLOUT` on all targets |
 | `multi-target-kustomize/` | Per-target `kustomizeDir` — `cluster-eu` and `cluster-us` each have their own kustomize overlay |
+| `config-hash-statefulset/` | Quick sync (`K8S_MULTI_SYNC`) of a StatefulSet (+ConfigMap) and DaemonSet (+Secret) — verifies config-hash rolling restart and StatefulSet/DaemonSet health status |
 
 ## Each folder contains
 

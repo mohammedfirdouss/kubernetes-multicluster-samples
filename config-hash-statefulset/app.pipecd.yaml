@@ -1,0 +1,15 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: config-hash-statefulset
+  labels:
+    env: test
+  description: Quick sync of a StatefulSet (+ConfigMap) and DaemonSet (+Secret) — verifies config-hash rolling restart and StatefulSet/DaemonSet health status
+  plugins:
+    kubernetes_multicluster:
+      input:
+        manifests:
+          - configmap.yaml
+          - statefulset.yaml
+          - daemonset.yaml
+        kubectlVersion: 1.32.2
