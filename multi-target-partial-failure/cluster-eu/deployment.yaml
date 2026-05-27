@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multi-target-partial-failure-eu
+  labels:
+    app: multi-target-partial-failure-eu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multi-target-partial-failure-eu
+  template:
+    metadata:
+      labels:
+        app: multi-target-partial-failure-eu
+    spec:
+      containers:
+      - name: helloworld
+        image: ghcr.io/pipe-cd/helloworld:v0.33.0
+        args:
+          - server
+        ports:
+        - containerPort: 9085

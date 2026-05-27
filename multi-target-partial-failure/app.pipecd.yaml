@@ -1,0 +1,23 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: multi-target-partial-failure
+  labels:
+    env: test
+  description: Multi-target app where cluster-eu succeeds and cluster-us fails, to verify per-target deploy status reporting.
+  pipeline:
+    stages:
+      - name: K8S_PRIMARY_ROLLOUT
+  plugins:
+    kubernetes_multicluster:
+      input:
+        multiTargets:
+          - target:
+              name: cluster-eu
+            manifests:
+              - cluster-eu/deployment.yaml
+          - target:
+              name: cluster-us
+            manifests:
+              - cluster-us/deployment.yaml
+        kubectlVersion: 1.32.2
