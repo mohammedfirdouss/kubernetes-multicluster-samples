@@ -1,0 +1,18 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: kustomize-options
+  labels:
+    env: test
+  description: Input-level kustomizeVersion + kustomizeOptions (load-restrictor) — overlay references a resource outside its root, only renderable with LoadRestrictionsNone
+  pipeline:
+    stages:
+      - name: K8S_PRIMARY_ROLLOUT
+  plugins:
+    kubernetes_multicluster:
+      input:
+        kustomizeDir: overlay
+        kustomizeVersion: 5.4.3
+        kustomizeOptions:
+          load-restrictor: LoadRestrictionsNone
+        kubectlVersion: 1.32.2

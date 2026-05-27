@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multi-target-partial-failure-us
+  labels:
+    app: multi-target-partial-failure-us
+spec:
+  # Negative replicas is valid YAML and a valid integer, so the manifest loads
+  # successfully. However, the Kubernetes API server rejects it during apply
+  # (spec.replicas must be >= 0), making only this target's stage fail.
+  replicas: -1
+  selector:
+    matchLabels:
+      app: multi-target-partial-failure-us
+  template:
+    metadata:
+      labels:
+        app: multi-target-partial-failure-us
+    spec:
+      containers:
+      - name: helloworld
+        image: ghcr.io/pipe-cd/helloworld:v0.33.0
+        args:
+          - server
+        ports:
+        - containerPort: 9085

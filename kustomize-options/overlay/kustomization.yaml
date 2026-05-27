@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# The deployment lives OUTSIDE this overlay directory (../shared).
+# Kustomize's default root-only load restrictor rejects this path; it only
+# renders when the input sets kustomizeOptions.load-restrictor: LoadRestrictionsNone.
+resources:
+  - ../shared/deployment.yaml
+namePrefix: opt-
+labels:
+  - pairs:
+      variant: kustomize-options
+    includeSelectors: true
