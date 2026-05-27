@@ -23,6 +23,10 @@ Each folder is a self-contained app registered in PipeCD with its own pipeline.
 | `per-stage-filtering/` | Canary on `cluster-eu` only (`multiTargets: [cluster-eu]`), then `K8S_PRIMARY_ROLLOUT` on all targets |
 | `multi-target-kustomize/` | Per-target `kustomizeDir` — `cluster-eu` and `cluster-us` each have their own kustomize overlay |
 | `config-hash-statefulset/` | Quick sync (`K8S_MULTI_SYNC`) of a StatefulSet (+ConfigMap) and DaemonSet (+Secret) — verifies config-hash rolling restart and StatefulSet/DaemonSet health status |
+| `cronjob-initcontainer/` | Quick sync of a Deployment with initContainers and a CronJob — verifies image extraction from initContainers and CronJob jobTemplates, plus ReplicaSet/Pod health status |
+| `kustomize-options/` | Input-level `kustomizeVersion` + `kustomizeOptions` (load-restrictor); overlay references a resource outside its root, renderable only with `LoadRestrictionsNone` |
+| `multi-target-partial-failure/` | Multi-target app where `cluster-eu` succeeds and `cluster-us` fails (negative replicas) — verifies per-target deploy status reporting (Success vs Failure within one stage) |
+| `helm-chart/` | Helm input support: deploys a self-contained local Helm chart with `helmOptions` (`setValues` + `valueFiles` overrides) |
 
 ## Each folder contains
 

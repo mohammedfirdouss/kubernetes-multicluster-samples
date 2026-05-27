@@ -1,0 +1,14 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: cronjob-initcontainer
+  labels:
+    env: test
+  description: Quick sync of a Deployment with initContainers and a CronJob — verifies image extraction from initContainers and CronJob jobTemplates, plus ReplicaSet/Pod health status
+  plugins:
+    kubernetes_multicluster:
+      input:
+        manifests:
+          - deployment.yaml
+          - cronjob.yaml
+        kubectlVersion: 1.32.2
