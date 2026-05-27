@@ -1,0 +1,19 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: helm-chart
+  labels:
+    env: test
+  description: Test Helm input support using a self-contained local chart
+  plugins:
+    kubernetes_multicluster:
+      input:
+        helmChart:
+          path: chart
+        helmVersion: 3.16.4
+        helmOptions:
+          setValues:
+            replicaCount: "2"
+          valueFiles:
+            - values-override.yaml
+        kubectlVersion: 1.32.2

@@ -1,0 +1,6 @@
+image:
+  tag: v0.33.0
+
+service:
+  enabled: true
+  port: 9085

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: helloworld
+description: A minimal Helm chart for testing the kubernetes_multicluster plugin Helm input
+type: application
+version: 0.1.0
+appVersion: v0.33.0

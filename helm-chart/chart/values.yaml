@@ -1,0 +1,11 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/pipe-cd/helloworld
+  tag: v0.33.0
+
+containerPort: 9085
+
+service:
+  enabled: true
+  port: 9085
