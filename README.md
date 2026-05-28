@@ -1,4 +1,4 @@
-# pipecd-test-app
+# kubernetes-multicluster-samples
 
 Test manifests for manual testing of the `kubernetes_multicluster` PipeCD plugin across two clusters (`cluster-eu` and `cluster-us`).
 
