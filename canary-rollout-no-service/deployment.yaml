@@ -4,6 +4,8 @@ metadata:
   name: simple
   labels:
     app: simple
+  annotations:
+    pipecd.dev/ignore-drift-detection: "true"
 spec:
   replicas: 2
   selector:
